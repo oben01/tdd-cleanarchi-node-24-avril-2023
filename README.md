@@ -39,7 +39,11 @@ En effet, lors de chaque réservation de Driver, une pré-autorisation est faite
 afin de s'assurer de la solvabilité du compte.
 
 Lors de sa première année d'utilisation, un Rider paiera le prix de la course divisé par 2.  
+
 Si le prix était de 0€, alors un avoir est pris en compte, valable pour la prochaine course.
+
+Si le nombre de kilomètres est inférieur à 5 km et que c'est son anniversaire,
+  alors il aura 5 euros de réduction.
 
 Le compte du Rider est débité par UberWeal une fois la course terminée.
 
