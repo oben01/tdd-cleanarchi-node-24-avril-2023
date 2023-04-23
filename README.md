@@ -24,34 +24,36 @@
 
 # UberWeal SAAS!
 
-L'application à la mode pour les trajets en voiture.
+L'application Uber-Like qui permet de réserver un Driver instantanément !
 
-Un Rider peut à tout moment demander un Driver pour se rendre au point de son choix.
-Selon la nature du trajet, le prix diffère.
+## Règles de gestion
 
-- Pour un trajet de Paris vers l'extérieur, le prix est de **30** euros
-- Pour un trajet de l'extérieur vers Paris, le prix est de **0** euro
-- Pour un trajet intra-muros, le prix est de **10** euros
-- Pour un trajet hors Paris, le prix est de **50** euros
+Un Rider peut à tout moment réserver une course pour se rendre au point de son choix.
+Une course est effectivement réservée lorsqu'un Driver libre a été assigné par le système.
 
-Pour réserver une course, le Rider doit avoir assez de fonds sur son compte bancaire.   
-En effet, lors de chaque réservation de Driver, une pré-autorisation est faite par UberWeal
-afin de s'assurer de la solvabilité du compte.
+Selon la nature de la course, le prix diffère.
+- Pour une course de Paris vers l'extérieur, le prix est de **30** euros
+- Pour une course de l'extérieur vers Paris, le prix est de **0** euro
+- Pour une course intra-muros, le prix est de **10** euros
+- Pour une course hors Paris, le prix est de **50** euros
 
-Lors de sa première année d'utilisation, un Rider paiera le prix de la course divisé par 2.  
 
-Si le prix était de 0€, alors un avoir est pris en compte, valable pour la prochaine course.
+- Pour réserver une course, le Rider doit avoir assez de fonds sur son compte bancaire.
 
-Si le nombre de kilomètres est inférieur à 5 km et que c'est son anniversaire,
-  alors il aura 5 euros de réduction.
 
-Le compte du Rider est débité par UberWeal une fois la course terminée.
+- Tant que le Driver n'est pas assigné, le Rider ne peut soumettre une autre demande de réservation à moins d'annuler la courante.
 
-# User Story - Réserver un Driver
+
+- Lors de sa première année d'utilisation, le Rider paiera le prix de la course divisé par 2.
+
+
+- Si le nombre de kilomètres est inférieur à 5 km, alors il aura 5 euros de réduction.
+
+# User Story - Réserver une course
 
 En tant que **Rider**,
 
-Je souhaite **réserver un Driver** pouvant m'amener à ma destination
+Je souhaite **réserver une course** pouvant m'amener à ma destination
 
 De sorte à assurer une alternative efficace aux transports en commun.
 
