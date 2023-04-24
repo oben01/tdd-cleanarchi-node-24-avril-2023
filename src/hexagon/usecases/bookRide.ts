@@ -1,9 +1,10 @@
 import { BookingRepository } from '../gateways/repositories/bookingRepository';
 import { BookRideCommand } from './bookRideCommand';
 import { ridePricer } from '../models/ridePricer';
+import { Clock } from '../gateways/clock-handling/clock';
 
 export const bookRide =
-  (bookingRepository: BookingRepository) =>
+  (bookingRepository: BookingRepository, clock: Clock) =>
   async (bookRideCommand: BookRideCommand) => {
     const { departure, arrival } = bookRideCommand;
     const price = ridePricer(departure, arrival);
@@ -12,5 +13,6 @@ export const bookRide =
       departure,
       arrival,
       price,
+      bookedAt: clock.now(),
     });
   };

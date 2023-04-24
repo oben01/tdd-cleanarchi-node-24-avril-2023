@@ -3,4 +3,5 @@ export interface Booking {
   departure: string;
   arrival: string;
   price: number;
+  bookedAt: Date;
 }

@@ -1,11 +1,14 @@
 import { bookRide } from './bookRide';
 import { BookRideCommand } from './bookRideCommand';
 import { InMemoryBookingRepository } from '../../adapters/secondary/inMemoryBookingRepository';
+import { staticClock } from '../../adapters/secondary/clock-handling/staticClock';
 
 describe('Ride booking', () => {
   const parisAddress = '3 rue de Courcelles Paris';
   const outsideAddress = '11 avenue Hugo Aubervilliers';
   let bookingRepository: InMemoryBookingRepository;
+  const fakeNow = new Date(2020, 3, 3, 4, 1, 2);
+  const clock = staticClock(fakeNow);
 
   beforeEach(() => {
     bookingRepository = new InMemoryBookingRepository();
@@ -32,7 +35,7 @@ describe('Ride booking', () => {
   );
 
   const bookARide = (bookRideCommand: BookRideCommand) => {
-    bookRide(bookingRepository)(bookRideCommand);
+    bookRide(bookingRepository, clock)(bookRideCommand);
   };
 
   const expectBookings = ({ id, departure, arrival, expectedPrice }) =>
@@ -42,6 +45,7 @@ describe('Ride booking', () => {
         departure,
         arrival,
         price: expectedPrice,
+        bookedAt: fakeNow,
       },
     ]);
 });
