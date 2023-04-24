@@ -1,5 +1,6 @@
-import { BookRide } from './bookRide';
-import { BookingRepository } from './bookingRepository';
+import { bookRide } from './bookRide';
+import { BookRideCommand } from './bookRideCommand';
+import { InMemoryBookingRepository } from '../../adapters/secondary/inMemoryBookingRepository';
 
 describe('Ride booking', () => {
   const parisAddress = '3 rue de Courcelles Paris';
@@ -20,7 +21,7 @@ describe('Ride booking', () => {
     'should book a ride from $departure to $arrival ' +
       'at $expectedPrice according the trip',
     async ({ departure, arrival, expectedPrice }) => {
-      await bookARide(departure, arrival);
+      await bookARide({ departure, arrival });
       expectBookings({
         id: '123abc',
         departure,
@@ -30,8 +31,8 @@ describe('Ride booking', () => {
     },
   );
 
-  const bookARide = (departure: string, arrival: string) => {
-    new BookRide(bookingRepository).handle(departure, arrival);
+  const bookARide = (bookRideCommand: BookRideCommand) => {
+    bookRide(bookingRepository)(bookRideCommand);
   };
 
   const expectBookings = ({ id, departure, arrival, expectedPrice }) =>
@@ -44,15 +45,3 @@ describe('Ride booking', () => {
       },
     ]);
 });
-
-export class InMemoryBookingRepository implements BookingRepository {
-  private _bookings: any[] = [];
-
-  get bookings(): any[] {
-    return this._bookings;
-  }
-
-  async save(booking: any): Promise<void> {
-    this._bookings.push(booking);
-  }
-}
