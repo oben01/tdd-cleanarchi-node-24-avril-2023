@@ -14,4 +14,8 @@ export class InMemoryBookingRepository implements BookingRepository {
   get bookings(): Booking[] {
     return this._bookings;
   }
+
+  hasAnyPendingBooking(): Promise<boolean> {
+    return Promise.resolve(false);
+  }
 }

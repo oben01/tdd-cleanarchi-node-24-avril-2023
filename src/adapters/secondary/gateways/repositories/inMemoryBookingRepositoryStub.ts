@@ -17,6 +17,12 @@ export class InMemoryBookingRepositoryStub implements BookingRepository {
     return this._nextId;
   }
 
+  async hasAnyPendingBooking(userId: string): Promise<boolean> {
+    return !!this._bookings.find(
+      (b) => b.status === 'PENDING' && userId === b.userId,
+    );
+  }
+
   set nextId(value: string) {
     this._nextId = value;
   }
